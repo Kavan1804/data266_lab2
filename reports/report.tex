@@ -1,0 +1,41 @@
+% DATA 266 Lab 2 combined report. Build on Overleaf, after running build_tables.py.
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx,booktabs,cite,tikz,url}
+\usetikzlibrary{arrows.meta,positioning}
+\title{DATA 266 Lab 2: Multimodal RAG, Diffusion Fine-Tuning and a Multi-Agent Image System}
+\author{\IEEEauthorblockN{Kavan Siddesh Kumar and Muhammed Faiq Salman}\IEEEauthorblockA{Pair\_Programming\_Team\_24, San Jos\'e State University}}
+\newcommand{\optional}[2]{\IfFileExists{#1}{\input{#1}}{\noindent\textbf{#2}\par}}
+\begin{document}
+\maketitle
+\begin{abstract}
+[TO BE WRITTEN LAST, in the team's own words, once results exist.]
+\end{abstract}
+
+\section{Part 1: Multimodal RAG}
+% We each built a complete Part 1. Both designs are described, then the comparison and the selected system.
+\input{sections/p1_kavan.tex}
+\optional{sections/p1_muhammed.tex}{[PENDING: Muhammed's Part 1 system]}
+\optional{sections/p1_eval.tex}{[PENDING: written together at the merge: golden sets, comparison, selection, results, failure and safety analysis]}
+\optional{tables/p1.tex}{[PENDING: run build\_tables.py]}
+
+\section{Part 2: Fine-Tuning Diffusion Models}
+\optional{sections/p2.tex}{[PENDING: Muhammed's Part 2 section, including the model card summary and Kavan's baseline as reproduction evidence]}
+\optional{tables/p2.tex}{[PENDING: run build\_tables.py]}
+
+\section{Part 3: Multimodal Multi-Agent System}
+\input{sections/p3.tex}
+% p3.tex also needs: Muhammed's baseline as reproduction evidence, and the half-page system card.
+\optional{tables/p3.tex}{[PENDING: run build\_tables.py]}
+
+\begin{thebibliography}{00}
+\bibitem{lewis} P. Lewis et al., ``Retrieval-augmented generation for knowledge-intensive NLP tasks,'' 2020. arXiv:2005.11401.
+\bibitem{faysse} M. Faysse et al., ``ColPali: Efficient document retrieval with vision language models,'' 2024. arXiv:2407.01449.
+\bibitem{greshake} K. Greshake et al., ``Not what you've signed up for: Compromising real-world LLM-integrated applications with indirect prompt injection,'' 2023. arXiv:2302.12173.
+\bibitem{rombach} R. Rombach et al., ``High-resolution image synthesis with latent diffusion models,'' 2022. arXiv:2112.10752.
+\bibitem{hu} E. Hu et al., ``LoRA: Low-rank adaptation of large language models,'' 2021. arXiv:2106.09685.
+\bibitem{carlini} N. Carlini et al., ``Extracting training data from diffusion models,'' 2023. arXiv:2301.13188.
+\bibitem{yao} S. Yao et al., ``ReAct: Synergizing reasoning and acting in language models,'' 2022. arXiv:2210.03629.
+\bibitem{madaan} A. Madaan et al., ``Self-Refine: Iterative refinement with self-feedback,'' 2023. arXiv:2303.17651.
+\bibitem{brooks} T. Brooks et al., ``InstructPix2Pix: Learning to follow image editing instructions,'' 2023. arXiv:2211.09800.
+\end{thebibliography}
+\end{document}

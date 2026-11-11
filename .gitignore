@@ -1,0 +1,32 @@
+# The brief says never commit PDFs, datasets, weights, images, keys or tokens.
+*.pdf
+DATA266_Lab2_Part1/
+data/
+outputs/
+submission.csv
+*.zip
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+.env
+*.token
+secrets*
+
+# local clutter
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+wandb/
+hf_cache/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.bbl
+*.blg

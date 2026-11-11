@@ -1,0 +1,30 @@
+% DRAFT written with Claude Code. The brief says "in your own words", so rewrite it before submitting.
+\subsection{Architecture}
+Five agents share one typed state object (Fig.~\ref{fig:p3}). The planner routes a request or refuses it. Caption and question requests stop after vision. Other requests continue through the prompt, generation and critique agents, and the critic can send a result back at most twice \cite{madaan}.
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[node distance=3.5mm,box/.style={draw,align=center,font=\scriptsize,minimum width=33mm,minimum height=5.5mm},>={Stealth}]
+\node[box] (pl) {Planner (input safety)};
+\node[box,below=of pl] (vi) {Vision (caption, objects, text)};
+\node[box,below=of vi] (pr) {Prompt engineering};
+\node[box,below=of pr] (ge) {Generation (img2img, edit, LoRA)};
+\node[box,below=of ge] (cr) {Critique (CLIP + model, output safety)};
+\node[box,below=of cr] (ou) {Accepted image + JSON trace};
+\foreach \a/\b in {pl/vi,vi/pr,pr/ge,ge/cr,cr/ou}{\draw[->] (\a)--(\b);}
+\draw[->] (cr.east)--++(5mm,0)|-(pr.east) node[pos=0.25,right,font=\scriptsize]{revise, max 2};
+\end{tikzpicture}
+\caption{Part 3 architecture.}
+\label{fig:p3}
+\end{figure}
+
+\subsection{Failure handling}
+Broken, empty and unreadable files are caught before any model runs. Every agent runs inside a wrapper that turns an exception into a message and still saves a trace.
+
+\subsection{Safety analysis}
+Text in an image is treated as data \cite{greshake}. The planner transcribes visible text, and if it reads like an instruction, generation requests are refused. Caption requests may quote that text as visible text but never act on it. Word patterns catch unsafe requests. The Stable Diffusion safety checker screens outputs, and flagged images never reach the user. [PENDING: results of the 10 red-team cases, with examples, after the GPU run.]
+
+\subsection{System card}
+\textbf{Can do:} caption images, answer questions about them, change style, edit, and generate domain-style images with our Part 2 LoRA. \textbf{Known limits:} [PENDING: fill in from observed failures]. Pattern-based checks can miss reworded requests. CLIP is only a rough measure of prompt match. \textbf{Safety measures:} input refusal, hidden-instruction check, output filter, two-revision limit and a JSON trace for every request.
+
+\subsection{What worked and what did not}
+[PENDING: write this after the GPU run, using real outputs.]

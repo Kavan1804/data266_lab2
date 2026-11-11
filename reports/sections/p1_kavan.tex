@@ -1,0 +1,28 @@
+% DRAFT written with Claude Code for Kavan's Part 1 system. The brief says "in your own words", so rewrite it before submitting.
+\subsection{Architecture}
+Our system answers questions over three PDFs, using text, tables and figures \cite{lewis}. Fig.~\ref{fig:p1} shows the flow.
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[node distance=4mm,box/.style={draw,align=center,font=\scriptsize,minimum width=33mm,minimum height=6mm},>={Stealth}]
+\node[box] (pdf) {PDFs + kb\_manifest.json};
+\node[box,below=of pdf] (ing) {Text chunks, numbered figures\\and tables, typed facts};
+\node[box,below=of ing] (idx) {ChromaDB index + BM25};
+\node[box,below=of idx] (ret) {Exact label lookup, then\\dense + BM25 with RRF};
+\node[box,below=of ret] (res) {Precedence rules (revision,\\outturn, conflict) or vision model};
+\node[box,below=of res] (out) {Checked JSON answer};
+\foreach \a/\b in {pdf/ing,ing/idx,idx/ret,ret/res,res/out}{\draw[->] (\a)--(\b);}
+\end{tikzpicture}
+\caption{Part 1 architecture.}
+\label{fig:p1}
+\end{figure}
+
+\subsection{Ingestion and retrieval}
+We read the PDFs with PyMuPDF. Each chunk keeps its document ID, page and trust level. Every numbered figure and table is saved as an image with its label and caption, so Figure B-5 and Figure B-5 (corrected) stay separate. A local vision model, Qwen2.5-VL-3B, describes each figure, which makes figures searchable as text. Appendix C is indexed with a low trust level, and retrieval filters it out.
+
+Retrieval checks for a named figure or table first, since several charts look almost identical. Otherwise it joins dense and BM25 rankings with reciprocal rank fusion.
+
+\subsection{Grounded answers}
+We parsed tables into typed facts (entity, variable, period, value, source, forecast or actual). Plain Python then applies the manifest's precedence rules. We chose this because a small model cannot be trusted to apply them every time. The model reads charts and answers open questions. This code holds no question text or answer values.
+
+\subsection{What worked and what did not}
+[PENDING: write this after the GPU run, using real outputs.]

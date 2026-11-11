@@ -1,0 +1,15 @@
+DATA 266 Lab 2, Pair_Programming_Team_24
+
+GitHub repository: [PENDING: final URL; currently https://github.com/Kavan1804/data266_lab2, to be renamed data266-lab2-team24]
+Tag p1-v1.0 commit: [PENDING]
+Tag p2-v1.0 commit: [PENDING]
+Tag p3-v1.0 commit: [PENDING]
+
+Hugging Face Part 2 model, run 1: [PENDING: <muhammed-hf>/data266-p2-lora-run1]
+Hugging Face Part 2 model, run 2: [PENDING: <muhammed-hf>/data266-p2-lora-run2]
+Hugging Face Part 2 images: [PENDING: <muhammed-hf>/data266-p2-generated-images]
+Hugging Face Part 3 inputs: [PENDING: Kavan1804/data266-p3-inputs]
+Hugging Face Part 2 baseline (Kavan, optional): [PENDING: Kavan1804/data266-p2-baseline-kavan-lora]
+
+Final Kaggle notebook: [PENDING]
+Final Kaggle submission selected: [PENDING]
